@@ -6,13 +6,14 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      NEXT_PUBLIC_BASE_URL: ${{ vars.NEXT_PUBLIC_BASE_URL }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
       AWS_ACCESSKEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ vars.AWS_SECRET_ACCESS_KEY }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
   steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
     - name: Setup Node.js
       uses: actions/setup-node@v3
@@ -23,5 +24,4 @@ jobs:
       run: npm ci
 
     - name: Deploy
-      run: |
-        npx sst deploy --stage prod
+      run: npx sst deploy --stage prod
