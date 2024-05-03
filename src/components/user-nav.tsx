@@ -1,6 +1,3 @@
-"use client";
-
-import { useUser } from "@/hooks/queries/auth";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
 import {
@@ -13,26 +10,28 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+// import { Skeleton } from "./ui/skeleton";
+
+import { getInitialsFromFullName } from "@/utils/formatters";
+
+import { User } from "@/service/schema/user";
+import Link from "next/link";
+import { fetchApi } from "@/service/api-server";
 import { Skeleton } from "./ui/skeleton";
 
-import Link from "next/link";
-import { getInitialsFromFullName } from "@/utils/formatters";
-import { useAuth } from "@/hooks/mutations/auth";
+import { LogoutButton } from "./logout-button";
 
-export function UserNav() {
-  const { user, isLoading } = useUser();
-  const { signOut } = useAuth();
-
-  if (isLoading) {
-    return <Skeleton className="h-8 w-8 rounded-full" />;
-  }
+export async function UserNav() {
+  const user = await fetchApi<User>("/me", {
+    cache: "force-cache",
+  });
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className="relative h-8 w-8 rounded-full select-none"
+          className="relative size-9 rounded-full select-none"
         >
           <Avatar className="size-9">
             <AvatarImage src={user?.avatarUrl} alt={user?.name ?? ""} />
@@ -54,27 +53,26 @@ export function UserNav() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem asChild>
-            <Link href="/settings">Profile</Link>
+            <Link href="/dashboard/account">Profile</Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-            <Link href="/settings/teams">My teams</Link>
+            <Link href="/dashboard/account/teams">My teams</Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-            <Link href="/settings/billing">Billing</Link>
+            <Link href="/dashboard/account/billing">Billing</Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-            <Link href="/settings/keys">API Keys</Link>
+            <Link href="/dashboard/account/keys">API Keys</Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem
-          onClick={() => {
-            signOut();
-          }}
-        >
-          Sair
-        </DropdownMenuItem>
+
+        <LogoutButton />
       </DropdownMenuContent>
     </DropdownMenu>
   );
+}
+
+export function UserNavSkeleton() {
+  return <Skeleton className="size-9 rounded-full" />;
 }

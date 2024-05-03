@@ -2,11 +2,13 @@ import Link from "next/link";
 
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
-import { UserNav } from "./user-nav";
-import { Building2, Plane } from "lucide-react";
-import { TeamButton } from "./team-button";
+import { UserNav, UserNavSkeleton } from "./user-nav";
+import { Plane } from "lucide-react";
+import { TeamButton, TeamButtonSkeleton } from "./team-button";
 
-export function Header() {
+import { Suspense } from "react";
+
+export async function Header() {
   return (
     <div className="border-b px-6 flex justify-between items-center h-[72px]">
       <div className="flex items-center gap-4">
@@ -24,9 +26,9 @@ export function Header() {
         />
 
         <span className="pt-1.5 flex">
-          {/* <TeamSwitcher />
-          <OrganizationSwitcher /> */}
-          <TeamButton />
+          <Suspense fallback={<TeamButtonSkeleton />}>
+            <TeamButton />
+          </Suspense>
         </span>
       </div>
       <div className="flex items-center gap-4">
@@ -55,8 +57,9 @@ export function Header() {
           </Link>
 
           <Separator orientation="vertical" className="h-5" />
-
-          <UserNav />
+          <Suspense fallback={<UserNavSkeleton />}>
+            <UserNav />
+          </Suspense>
         </nav>
       </div>
     </div>

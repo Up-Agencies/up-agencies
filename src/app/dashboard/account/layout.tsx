@@ -1,7 +1,4 @@
-
 import type { Metadata } from "next";
-
-import { Header } from "@/components/header";
 
 export const metadata: Metadata = {
   title: "Up Agencies | Dashboard",
@@ -13,11 +10,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <div>
-      <Header />
-      
-      {children}
-    </div>
-  );
+  return <div>Account</div>;
 }

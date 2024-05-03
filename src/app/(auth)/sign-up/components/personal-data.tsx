@@ -9,10 +9,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { useFormContext } from "react-hook-form";
 import { FormSignUpData } from "../schema";
-import { useSetAtom } from "jotai";
-import { stepAtom, useSignUpStep } from "@/hooks/useAuth";
-import { formatPhoneNumber } from "@/utils/formatters";
+import { useSignUpStep } from "@/hooks/useAuth";
 import { PhoneInput } from "@/components/ui/phone-input";
+import { PasswordInput } from "@/components/ui/password-input";
 
 export function PersonalData() {
   const { onChangeCurrentStep } = useSignUpStep();
@@ -96,9 +95,8 @@ export function PersonalData() {
           <FormItem>
             <FormLabel>Senha</FormLabel>
             <FormControl>
-              <Input
+              <PasswordInput
                 autoComplete="new-password"
-                type="password"
                 error={!!formState.errors.password?.message}
                 placeholder="••••••••"
                 {...field}

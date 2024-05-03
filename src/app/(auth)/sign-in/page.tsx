@@ -3,6 +3,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import z from "zod";
+import Link from "next/link";
+
+import { useAuth } from "@/hooks/queries/use-auth-queries";
 
 import {
   Form,
@@ -12,11 +15,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import Link from "next/link";
-
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/hooks/mutations/auth";
 import { Loader } from "lucide-react";
 
 const schema = z.object({

@@ -1,18 +1,5 @@
-import { cva } from "class-variance-authority";
-import { motion } from "framer-motion";
+import { Variant, Variants, motion } from "framer-motion";
 import colors from "tailwindcss/colors";
-
-const stepVariants = cva("h-1 rounded-sm", {
-  variants: {
-    active: {
-      true: "bg-primary",
-      false: "bg-zinc-200",
-    },
-  },
-  defaultVariants: {
-    active: false,
-  },
-});
 
 export interface MultiStepProps {
   currentStep?: number;
@@ -44,15 +31,10 @@ export function MultiStep({ currentStep = 1 }: MultiStepProps) {
                 variants={{
                   inactive: {
                     width: 0,
-                    backgroundColor: colors.purple[600],
                   },
                   active: {
-                    scale: 1,
                     width: "100%",
-                    transition: {
-                      delay: 0,
-                      duration: 0.3,
-                    },
+
                     backgroundColor: colors.purple[600],
                   },
                   complete: {
@@ -67,7 +49,7 @@ export function MultiStep({ currentStep = 1 }: MultiStepProps) {
                 transition={{
                   duration: 0.6,
                   delay: 0.2,
-                  type: "tween",
+                  type: "spring",
                   ease: "circOut",
                 }}
                 className="absolute inset-0 rounded-sm w-0"

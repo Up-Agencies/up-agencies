@@ -1,7 +1,10 @@
-import { parseCookies } from "nookies";
+import { cookies } from "next/headers";
 
-export async function fetchApiClient<T>(url: string, options?: RequestInit) {
-  const { "up-agencies.token": token } = parseCookies();
+export async function fetchApi<T = unknown>(
+  url: string,
+  options?: RequestInit,
+) {
+  const token = cookies().get("up-agencies.token")?.value;
 
   const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}${url}`, {
     headers: {

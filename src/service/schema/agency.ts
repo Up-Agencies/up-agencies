@@ -7,5 +7,5 @@ export interface Agency {
   cnpj: string;
   logoUrl?: string;
   layoutColor?: string;
-  address: Address;
+  address?: Address;
 }
