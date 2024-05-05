@@ -1,6 +1,6 @@
 "use client";
+import { type ReactNode, useState } from "react";
 
-import { ReactNode, useState } from "react";
 import { Provider } from "jotai";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
