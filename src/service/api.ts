@@ -1,4 +1,9 @@
 import { parseCookies } from "nookies";
+import axios from "axios";
+
+export const api = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+});
 
 export async function fetchApiClient<T>(url: string, options?: RequestInit) {
   const { "up-agencies.token": token } = parseCookies();
@@ -10,6 +15,11 @@ export async function fetchApiClient<T>(url: string, options?: RequestInit) {
     },
     ...options,
   });
+
+  if (!response.ok) {
+    console.log(response.type);
+    if (response.type) throw new Error("LALA");
+  }
 
   const data: T = await response.json();
 

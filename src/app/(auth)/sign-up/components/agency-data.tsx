@@ -1,19 +1,14 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useFormContext } from "react-hook-form";
-import { FormSignUpData } from "../schema";
+import type { FormSignUpData } from "../schema";
 import { formatCNPJ } from "@/utils/formatters";
 import { useSignUpStep } from "@/hooks/useAuth";
 import { Loader } from "lucide-react";
+import { SpaceActionPortal } from "@/components/portal";
 
 export function AgencyData() {
   const { onChangeCurrentStep } = useSignUpStep();
@@ -100,12 +95,8 @@ export function AgencyData() {
         >
           Voltar
         </Button>
-        <Button disabled={form.formState.isSubmitting} type="submit">
-          {form.formState.isSubmitting && (
-            <Loader className="size-4 mr-1 animate-spin" />
-          )}
-          Criar conta
-        </Button>
+
+        <SpaceActionPortal id="SIGN_UP_BUTTON_SUBMIT" />
       </div>
     </>
   );

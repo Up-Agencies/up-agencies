@@ -42,6 +42,7 @@ export type FormSignUpData = z.infer<typeof schema>;
 export default function SignUp() {
   const form = useForm<FormSignUpData>({
     resolver: zodResolver(schema),
+    mode: "onBlur",
   });
 
   const {
