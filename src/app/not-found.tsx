@@ -1,7 +1,5 @@
 import { cn } from "@/lib/utils";
-import { ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { Spotlight } from "./(not-found)/components/spotlight";
 import { Button } from "@/components/ui/button";
 
 export default function NotFoundPage() {
@@ -139,7 +137,7 @@ function PerlinNoise() {
           height="100%"
           filterUnits="objectBoundingBox"
           primitiveUnits="userSpaceOnUse"
-          color-interpolation-filters="linearRGB"
+          colorInterpolationFilters="linearRGB"
         >
           <feTurbulence
             type="fractalNoise"
