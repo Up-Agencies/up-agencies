@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 import { cookies } from "next/headers";
 import { decrypt } from "./lib/session";
@@ -19,11 +19,7 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL("/sign-in", req.nextUrl));
   }
 
-  if (
-    isPublicRoute &&
-    session?.id &&
-    !req.nextUrl.pathname.startsWith("/dashboard")
-  ) {
+  if (isPublicRoute && session?.id && !req.nextUrl.pathname.startsWith("/dashboard")) {
     revalidatePath("/dashboard");
     return NextResponse.redirect(new URL("/dashboard", req.nextUrl));
   }

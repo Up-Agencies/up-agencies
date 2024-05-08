@@ -16,11 +16,6 @@ export async function fetchApiClient<T>(url: string, options?: RequestInit) {
     ...options,
   });
 
-  if (!response.ok) {
-    console.log(response.type);
-    if (response.type) throw new Error("LALA");
-  }
-
   const data: T = await response.json();
 
   return data;

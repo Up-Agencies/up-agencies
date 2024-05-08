@@ -4,7 +4,7 @@ import { Header } from "@/components/header";
 import { Navbar } from "@/components/navbar";
 
 export const metadata: Metadata = {
-  title: "Up Agencies | Dashboard",
+  title: "Up Agencies ",
   description: "Up Agencies",
 };
 

@@ -1,4 +1,4 @@
-import { type SignInReturn, signIn, signUp } from "@/service/auth";
+import { type SignInReturn, signIn, signUp, forgotPassword, updatePassword } from "@/service/auth";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { destroyCookie, setCookie } from "nookies";
@@ -59,6 +59,34 @@ export function useAuth() {
     },
   });
 
+  const forgotPasswordMutation = useMutation({
+    mutationFn: forgotPassword,
+    onSuccess() {
+      toast.success(
+        "Você receberá um e-mail de redefinição de senha. O link de redefinição de senha expira em 10 minutos.",
+      );
+    },
+    onError(error: AxiosError) {
+      if (error.response?.status === 401) {
+        toast.error("E-mail não encontrado.Por favor, verifique o e-mail e tente novamente 😥");
+      }
+    },
+  });
+
+  const updatePasswordMutation = useMutation({
+    mutationFn: updatePassword,
+    onSuccess() {
+      toast.success("Senha redefinida com sucesso");
+
+      router.push("/sign-in");
+    },
+    onError(error: AxiosError) {
+      if (error.response?.status === 401) {
+        toast.error("Error ao definir a senha 😥");
+      }
+    },
+  });
+
   function signOut() {
     destroyCookie(undefined, "up-agencies.token");
 
@@ -69,6 +97,8 @@ export function useAuth() {
   return {
     signInMutation,
     signUpMutation,
+    forgotPasswordMutation,
+    updatePasswordMutation,
     signOut,
   };
 }

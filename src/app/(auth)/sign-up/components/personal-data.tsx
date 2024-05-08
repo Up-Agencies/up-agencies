@@ -20,8 +20,8 @@ export function PersonalData() {
       form.trigger("phone"),
     ]);
 
+    onChangeCurrentStep("agency");
     if (hasValid.every((field) => field)) {
-      onChangeCurrentStep("agency");
     }
   }
 

@@ -8,9 +8,12 @@ import type { FormSignUpData } from "../schema";
 import { formatCNPJ } from "@/utils/formatters";
 import { useSignUpStep } from "@/hooks/useAuth";
 import { Loader } from "lucide-react";
-import { SpaceActionPortal } from "@/components/portal";
 
-export function AgencyData() {
+interface AgencyDataProps {
+  isPending: boolean;
+}
+
+export function AgencyData({ isPending }: AgencyDataProps) {
   const { onChangeCurrentStep } = useSignUpStep();
 
   const form = useFormContext<FormSignUpData>();
@@ -96,7 +99,10 @@ export function AgencyData() {
           Voltar
         </Button>
 
-        <SpaceActionPortal id="SIGN_UP_BUTTON_SUBMIT" />
+        <Button disabled={isPending} type="submit">
+          {isPending && <Loader className="size-4 mr-1 animate-spin" />}
+          Criar conta
+        </Button>
       </div>
     </>
   );

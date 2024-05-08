@@ -9,14 +9,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex flex-1 min-h-screen">
-      <div className="absolute top-0 w-full px-8 mx-auto sm:px-6 lg:px-8 mt-6">
-        <Logo />
-      </div>
-
+    <div className="flex flex-1 min-h-screen items-stretch">
       <div className="flex flex-1">
-        <main className="flex flex-col items-center flex-1 flex-shrink-0 px-5 pt-16 pb-8 border-r shadow-lg bg-studio border-default">
-          <div className="relative flex-1 flex flex-col justify-center w-[330px] sm:w-[384px]">
+        <aside className="flex-col items-center justify-center flex-1 flex-shrink hidden basis-1/4 lg:flex bg-primary">
+          <DotBackground />
+        </aside>
+
+        <main className="lg:h-[100dvh] flex flex-col items-center flex-1 flex-shrink-0 px-5 pt-16 pb-8 border-r shadow-lg bg-studio border-default">
+          <Logo />
+
+          <div className="relative flex flex-1 flex-col justify-center w-[338px] sm:w-[384px] m-auto">
             {children}
           </div>
 
@@ -34,10 +36,6 @@ export default function RootLayout({
             </p>
           </div>
         </main>
-
-        <aside className="flex-col items-center justify-center flex-1 flex-shrink hidden basis-1/4 lg:flex bg-primary">
-          <DotBackground />
-        </aside>
       </div>
     </div>
   );

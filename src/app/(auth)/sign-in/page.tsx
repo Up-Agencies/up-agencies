@@ -55,8 +55,8 @@ export default function SignUp() {
 
   return (
     <>
-      <div className="mb-10">
-        <h1 className="mt-8 mb-2 text-2xl lg:text-3xl">Bem vindo</h1>
+      <div className="mt-16 mb-12 max-md:mt-12 max-md:mb-8">
+        <h1 className="mb-1 text-2xl lg:text-3xl font-medium">Bem vindo</h1>
         <h2 className="text-muted-foreground">Faça login em sua conta</h2>
       </div>
 
@@ -64,54 +64,60 @@ export default function SignUp() {
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           method="POST"
-          className="w-full p-1 transition-all overflow-y-hidden duration-500 max-h-[1000px] opacity-100"
+          className="flex flex-col gap-4 overflow-y-hidden max-h-[1000px] p-1"
         >
-          <div className="flex flex-col gap-4">
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field, formState }) => (
-                <FormItem>
-                  <FormLabel>E-mail</FormLabel>
-                  <FormControl>
-                    <Input
-                      autoComplete="new-password"
-                      error={!!formState.errors.email?.message}
-                      placeholder="you@example.com"
-                      {...field}
-                    />
-                  </FormControl>
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field, formState }) => (
+              <FormItem>
+                <FormLabel>E-mail</FormLabel>
+                <FormControl>
+                  <Input
+                    autoComplete="new-password"
+                    error={!!formState.errors.email?.message}
+                    placeholder="you@example.com"
+                    {...field}
+                  />
+                </FormControl>
 
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field, formState }) => (
-                <FormItem>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field, formState }) => (
+              <FormItem>
+                <span className="flex justify-between">
                   <FormLabel>Senha</FormLabel>
-                  <FormControl>
-                    <Input
-                      autoComplete="new-password"
-                      type="password"
-                      error={!!formState.errors.password?.message}
-                      placeholder="••••••••"
-                      {...field}
-                    />
-                  </FormControl>
+                  <Link
+                    href="/forgot"
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Esqueceu a senha?
+                  </Link>
+                </span>
+                <FormControl>
+                  <Input
+                    autoComplete="new-password"
+                    type="password"
+                    error={!!formState.errors.password?.message}
+                    placeholder="••••••••"
+                    {...field}
+                  />
+                </FormControl>
 
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-            <Button disabled={isPending} type="submit" className="mt-4">
-              {isPending && <Loader className="size-4 mr-1 animate-spin" />}
-              Entrar
-            </Button>
-          </div>
+          <Button disabled={isPending} type="submit" className="mt-4">
+            {isPending && <Loader className="size-4 mr-1 animate-spin" />}
+            Entrar
+          </Button>
         </form>
       </Form>
 
