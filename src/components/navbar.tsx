@@ -1,103 +1,87 @@
+"use client";
 import {
-  ArrowRightToLine,
-  Book,
-  Bot,
-  Code2,
-  LifeBuoy,
-  Settings2,
-  SquareTerminal,
-  SquareUser,
-  Triangle,
+  FileBadge,
+  FileClock,
+  HandHelping,
+  LayoutDashboard,
+  MessageCircle,
+  Plane,
+  Users,
 } from "lucide-react";
-import { Button } from "./ui/button";
-import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+
+import { ActiveLink } from "./active-link";
 
 export function Navbar() {
   return (
-    <aside className="inset-y fixed left-0 z-20 flex h-full flex-col border-r">
-      <div className="border-b size-16 grid place-content-center">
-        <Button variant="outline" size="icon" aria-label="Home">
-          <ArrowRightToLine className="size-5" />
-        </Button>
-      </div>
-      <nav className="grid gap-1 p-3">
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="rounded-lg bg-muted text-primary"
-              aria-label="Playground"
-            >
-              <SquareTerminal className="size-5" />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent side="right" sideOffset={5}>
-            Playground
-          </TooltipContent>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button variant="ghost" size="icon" className="rounded-lg" aria-label="Models">
-              <Bot className="size-5" />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent side="right" sideOffset={5}>
-            Models
-          </TooltipContent>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button variant="ghost" size="icon" className="rounded-lg" aria-label="API">
-              <Code2 className="size-5" />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent side="right" sideOffset={5}>
-            API
-          </TooltipContent>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button variant="ghost" size="icon" className="rounded-lg" aria-label="Documentation">
-              <Book className="size-5" />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent side="right" sideOffset={5}>
-            Documentation
-          </TooltipContent>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button variant="ghost" size="icon" className="rounded-lg" aria-label="Settings">
-              <Settings2 className="size-5" />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent side="right" sideOffset={5}>
-            Settings
-          </TooltipContent>
-        </Tooltip>
-      </nav>
-      <nav className="mt-auto grid gap-1 p-3">
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button variant="ghost" size="icon" className="mt-auto rounded-lg" aria-label="Help">
-              <LifeBuoy className="size-5" />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent side="right" sideOffset={5}>
-            Help
-          </TooltipContent>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button variant="ghost" size="icon" className="mt-auto rounded-lg" aria-label="Account">
-              <SquareUser className="size-5" />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent side="right" sideOffset={5}>
-            Account
-          </TooltipContent>
-        </Tooltip>
+    <aside className="inset-y z-20 flex-col shrink-0 border-r hidden lg:flex gap-3 w-[234px]">
+      <nav className="flex flex-col justify-between overflow-y-auto h-full p-6 w-[232px]">
+        <div className="flex flex-col gap-6">
+          <div>
+            <h3 className="text-muted-foreground text-xs tracking-wider mb-3 whitespace-nowrap select-none">
+              GERAL
+            </h3>
+            <ul className="flex flex-col gap-1">
+              <li>
+                <ActiveLink shouldMatchExactHref href="/dashboard">
+                  <LayoutDashboard className="size-5" />
+                  Dashboard
+                </ActiveLink>
+              </li>
+              <li>
+                <ActiveLink href="#">
+                  <FileBadge className="size-5" />
+                  Cotações
+                </ActiveLink>
+              </li>
+              <li>
+                <ActiveLink href="#">
+                  <Plane className="size-5" />
+                  Voos
+                </ActiveLink>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-muted-foreground text-xs tracking-wider mb-3 whitespace-nowrap select-none">
+              LISTAS
+            </h3>
+            <ul className="flex flex-col gap-1">
+              <li>
+                <ActiveLink shouldMatchExactHref href="/">
+                  <Users className="size-5" />
+                  Clientes
+                </ActiveLink>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="flex flex-col gap-6">
+          <div>
+            <h3 className="text-muted-foreground text-xs tracking-wider mb-3 whitespace-nowrap select-none">
+              RECURSOS
+            </h3>
+            <ul>
+              <li>
+                <ActiveLink shouldMatchExactHref href="#">
+                  <MessageCircle className="size-5" />
+                  Feedback
+                </ActiveLink>
+              </li>
+              <li>
+                <ActiveLink href="#">
+                  <HandHelping className="size-5" />
+                  Suporte
+                </ActiveLink>
+              </li>
+              <li>
+                <ActiveLink href="#">
+                  <FileClock className="size-5" />
+                  Novidades
+                </ActiveLink>
+              </li>
+            </ul>
+          </div>
+        </div>
       </nav>
     </aside>
   );

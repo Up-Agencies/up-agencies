@@ -6,5 +6,9 @@ import { DropdownMenuItem } from "./ui/dropdown-menu";
 export function LogoutButton() {
   const { signOut } = useAuth();
 
-  return <DropdownMenuItem onSelect={signOut}>Sair da conta</DropdownMenuItem>;
+  return (
+    <DropdownMenuItem onSelect={signOut} className="text-muted-foreground">
+      Sair da conta
+    </DropdownMenuItem>
+  );
 }

@@ -14,12 +14,13 @@ import {
 
 import { getInitialsFromFullName } from "@/utils/formatters";
 
-import { User } from "@/service/schema/user";
+import type { User } from "@/service/schema/user";
 import Link from "next/link";
 import { fetchApi } from "@/service/api-server";
 import { Skeleton } from "./ui/skeleton";
 
 import { LogoutButton } from "./logout-button";
+import { UserCog } from "lucide-react";
 
 export async function UserNav() {
   const user = await fetchApi<User>("/me", {
@@ -29,15 +30,10 @@ export async function UserNav() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          className="relative size-9 rounded-full select-none"
-        >
+        <Button variant="ghost" className="relative size-9 rounded-full select-none">
           <Avatar className="size-9">
             <AvatarImage src={user?.avatarUrl} alt={user?.name ?? ""} />
-            <AvatarFallback>
-              {user?.name && getInitialsFromFullName(user.name)}
-            </AvatarFallback>
+            <AvatarFallback>{user?.name && getInitialsFromFullName(user.name)}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
@@ -45,28 +41,25 @@ export async function UserNav() {
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-2">
             <p className="text-sm font-medium leading-none">{user?.name}</p>
-            <p className="text-xs leading-none text-muted-foreground">
-              {user?.email}
-            </p>
+            <p className="text-xs leading-none text-muted-foreground">{user?.email}</p>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuGroup>
+        <DropdownMenuGroup className="*:text-muted-foreground *:flex *:justify-between">
           <DropdownMenuItem asChild>
-            <Link href="/dashboard/account">Profile</Link>
+            <Link href="/dashboard/account">
+              Configurações da conta
+              <UserCog className="size-5" />
+            </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-            <Link href="/dashboard/account/teams">My teams</Link>
+            <Link href="/dashboard/account/teams">Cobrança</Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-            <Link href="/dashboard/account/billing">Billing</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            <Link href="/dashboard/account/keys">API Keys</Link>
+            <Link href="/dashboard/account/billing">Tema: Claro</Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-
         <LogoutButton />
       </DropdownMenuContent>
     </DropdownMenu>
