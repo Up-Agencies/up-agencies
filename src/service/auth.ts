@@ -1,9 +1,16 @@
-import { fetchApiClient } from "./api";
-import { Agency } from "./schema/agency";
-import { User } from "./schema/user";
+import { api, fetchApiClient } from "./api";
+import type { Agency } from "./schema/agency";
+import type { User } from "./schema/user";
 
 interface SignUpParam extends User {
   agency: Agency;
+}
+
+export async function signUp(body: SignUpParam) {
+  const response = await api.post("/auth/sign-up", body);
+  const data = await response.data;
+
+  return data;
 }
 
 interface SignInParam {
@@ -11,25 +18,37 @@ interface SignInParam {
   password: string;
 }
 
-interface SignInReturn {
+export interface SignInReturn {
   token: string;
 }
 
-export async function signUp(data: SignUpParam) {
-  return fetchApiClient("/auth/sign-up", {
-    body: JSON.stringify(data),
-    method: "POST",
-  });
+export async function signIn(body: SignInParam) {
+  const response = await api.post("/auth/sign-in", body);
+  const data = await response.data;
+
+  return data;
 }
 
-export async function signIn(data: SignInParam) {
-  return fetchApiClient<SignInReturn>("/auth/sign-in", {
-    body: JSON.stringify(data),
-    method: "POST",
-  });
+interface ForgotPasswordParam {
+  email: string;
 }
 
-// export async function me() {
-//   const response = await fetchApiClient("/me");
-//   const data = await response.return;
-// }
+export async function forgotPassword(body: ForgotPasswordParam) {
+  const response = await api.post("/auth/forgot-password", body);
+  const data = await response.data;
+
+  return data;
+}
+
+interface UpdatePasswordParam {
+  code: string;
+  password: string;
+  confirmPassword: string;
+}
+
+export async function updatePassword(body: UpdatePasswordParam) {
+  const response = await api.patch("/auth/update-password", body);
+  const data = await response.data;
+
+  return data;
+}

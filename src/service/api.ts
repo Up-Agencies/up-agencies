@@ -1,4 +1,9 @@
 import { parseCookies } from "nookies";
+import axios from "axios";
+
+export const api = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+});
 
 export async function fetchApiClient<T>(url: string, options?: RequestInit) {
   const { "up-agencies.token": token } = parseCookies();

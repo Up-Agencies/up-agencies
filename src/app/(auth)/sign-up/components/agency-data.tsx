@@ -1,21 +1,19 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useFormContext } from "react-hook-form";
-import { FormSignUpData } from "../schema";
+import type { FormSignUpData } from "../schema";
 import { formatCNPJ } from "@/utils/formatters";
 import { useSignUpStep } from "@/hooks/useAuth";
 import { Loader } from "lucide-react";
 
-export function AgencyData() {
+interface AgencyDataProps {
+  isPending: boolean;
+}
+
+export function AgencyData({ isPending }: AgencyDataProps) {
   const { onChangeCurrentStep } = useSignUpStep();
 
   const form = useFormContext<FormSignUpData>();
@@ -100,10 +98,9 @@ export function AgencyData() {
         >
           Voltar
         </Button>
-        <Button disabled={form.formState.isSubmitting} type="submit">
-          {form.formState.isSubmitting && (
-            <Loader className="size-4 mr-1 animate-spin" />
-          )}
+
+        <Button disabled={isPending} type="submit">
+          {isPending && <Loader className="size-4 mr-1 animate-spin" />}
           Criar conta
         </Button>
       </div>

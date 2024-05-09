@@ -1,14 +1,8 @@
 import { Button } from "@/components/ui/button";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useFormContext } from "react-hook-form";
-import { FormSignUpData } from "../schema";
+import type { FormSignUpData } from "../schema";
 import { useSignUpStep } from "@/hooks/useAuth";
 import { PhoneInput } from "@/components/ui/phone-input";
 import { PasswordInput } from "@/components/ui/password-input";
@@ -26,7 +20,9 @@ export function PersonalData() {
       form.trigger("phone"),
     ]);
 
-    if (hasValid.every((field) => field)) onChangeCurrentStep("agency");
+    onChangeCurrentStep("agency");
+    if (hasValid.every((field) => field)) {
+    }
   }
 
   return (

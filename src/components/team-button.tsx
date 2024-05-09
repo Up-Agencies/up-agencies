@@ -1,6 +1,6 @@
 import { Building2 } from "lucide-react";
 import { Avatar, AvatarFallback } from "./ui/avatar";
-import { Agency } from "@/service/schema/agency";
+import type { Agency } from "@/service/schema/agency";
 import { fetchApi } from "@/service/api-server";
 import { Skeleton } from "./ui/skeleton";
 
