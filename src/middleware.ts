@@ -2,7 +2,6 @@ import { type NextRequest, NextResponse } from "next/server";
 
 import { cookies } from "next/headers";
 import { decrypt } from "./lib/session";
-import { revalidatePath } from "next/cache";
 
 const protectedRoutes = ["/dashboard"];
 const publicRoutes = ["/sign-in", "/sing-up", "/"];
@@ -20,7 +19,6 @@ export default async function middleware(req: NextRequest) {
   }
 
   if (isPublicRoute && session?.id && !req.nextUrl.pathname.startsWith("/dashboard")) {
-    revalidatePath("/dashboard");
     return NextResponse.redirect(new URL("/dashboard", req.nextUrl));
   }
 

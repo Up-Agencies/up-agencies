@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="min-h-screen w-full grid lg:grid-cols-[auto_1fr] grid-rows-[auto_1fr]">
+    <div className="min-h-screen w-full grid lg:grid-cols-[auto_1fr] grid-rows-[auto_1fr] bg-background-foreground">
       <Header />
 
       <Navbar />

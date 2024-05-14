@@ -7,25 +7,30 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-// import { Skeleton } from "./ui/skeleton";
 
 import { getInitialsFromFullName } from "@/utils/formatters";
 
-import type { User } from "@/service/schema/user";
 import Link from "next/link";
-import { fetchApi } from "@/service/api-server";
+
 import { Skeleton } from "./ui/skeleton";
 
 import { LogoutButton } from "./logout-button";
 import { UserCog } from "lucide-react";
 
-export async function UserNav() {
-  const user = await fetchApi<User>("/me", {
+import { cache } from "react";
+import { fetchApi } from "@/service/api-server";
+import type { User } from "@/service/schema/user";
+
+const getMe = cache(async () => {
+  return await fetchApi<User>("/me", {
     cache: "force-cache",
   });
+});
+
+export async function UserNav() {
+  const user = await getMe();
 
   return (
     <DropdownMenu>
@@ -47,16 +52,16 @@ export async function UserNav() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup className="*:text-muted-foreground *:flex *:justify-between">
           <DropdownMenuItem asChild>
-            <Link href="/dashboard/account">
+            <Link href="/dashboard/account/profile">
               Configurações da conta
               <UserCog className="size-5" />
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-            <Link href="/dashboard/account/teams">Cobrança</Link>
+            <Link href="/#">Cobrança</Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-            <Link href="/dashboard/account/billing">Tema: Claro</Link>
+            <Link href="/dashboard/account/preferences">Preferências</Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
