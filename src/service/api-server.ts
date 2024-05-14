@@ -1,9 +1,6 @@
 import { cookies } from "next/headers";
 
-export async function fetchApi<T = unknown>(
-  url: string,
-  options?: RequestInit,
-) {
+export async function fetchApi<T = unknown>(url: string, options?: RequestInit) {
   const token = cookies().get("up-agencies.token")?.value;
 
   const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}${url}`, {

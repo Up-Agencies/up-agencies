@@ -9,7 +9,17 @@ export const formatCNPJ = (value: string) => {
     .replace(/(\d{4})(\d)/, "$1-$2");
 };
 
-export function formatPhoneNumber(value: string) {
+export const formatDate = (value: string) => {
+  const cleanedValue = value.replace(/\D/g, ""); // remove caracteres não numéricos
+
+  // CNPJ
+  return cleanedValue
+    .replace(/(\d{2})(\d)/, "$1/$2")
+    .replace(/(\d{2})(\d)/, "$1/$2")
+    .replace(/(\d{4})(\d)/, "$1");
+};
+
+export function formatPhone(value: string) {
   const cleaned = value.replace(/\D/g, "");
 
   if (cleaned === "" || cleaned.length < 2) {

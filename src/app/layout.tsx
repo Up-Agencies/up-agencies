@@ -3,6 +3,13 @@ import { GeistSans } from "geist/font/sans";
 import "@/styles/globals.css";
 import { Providers } from "./providers";
 import { Toaster } from "sonner";
+import relativeTime from "dayjs/plugin/relativeTime";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+import dayjs from "dayjs";
+
+// Carregue o plugin relativeTime
+dayjs.extend(relativeTime);
+dayjs.extend(customParseFormat);
 
 export const metadata: Metadata = {
   title: "Up Agencies | Home",
@@ -15,9 +22,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <Providers>
-        <body className={GeistSans.className}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={GeistSans.className}>
+        <Providers>
           {children}
 
           <Toaster richColors />
@@ -32,8 +39,8 @@ export default function RootLayout({
               <div className="hidden sm:hidden md:hidden lg:hidden xl:hidden 2xl:block">2xl</div>
             </div>
           )}
-        </body>
-      </Providers>
+        </Providers>
+      </body>
     </html>
   );
 }

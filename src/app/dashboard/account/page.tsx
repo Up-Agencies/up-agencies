@@ -1,3 +1,5 @@
-export default async function Account() {
-  return <div />;
+import { redirect } from "next/navigation";
+
+export default function Account() {
+  redirect("/dashboard/account/profile");
 }

@@ -51,7 +51,7 @@ export function PersonalData() {
         name="phone"
         render={({ field, formState }) => (
           <FormItem className="flex flex-col items-start">
-            <FormLabel className="text-left">Celular</FormLabel>
+            <FormLabel className="text-left">Telefone</FormLabel>
             <FormControl>
               <PhoneInput
                 maxLength={15}
