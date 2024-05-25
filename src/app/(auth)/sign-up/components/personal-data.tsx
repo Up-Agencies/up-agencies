@@ -57,7 +57,7 @@ export function PersonalData() {
                 maxLength={15}
                 error={!!formState.errors.phone?.message}
                 defaultCountry="BR"
-                placeholder="Enter a phone number"
+                placeholder="Entre com um número"
                 {...field}
               />
             </FormControl>
@@ -75,7 +75,7 @@ export function PersonalData() {
               <Input
                 autoComplete="new-password"
                 error={!!formState.errors.email?.message}
-                placeholder="you@example.com"
+                placeholder="você@exemplo.com"
                 {...field}
               />
             </FormControl>

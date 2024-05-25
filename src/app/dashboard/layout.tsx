@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 
-import { Header } from "@/components/header";
 import { Navbar } from "@/components/navbar";
 
 export const metadata: Metadata = {
@@ -14,14 +13,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="min-h-screen w-full grid lg:grid-cols-[auto_1fr] grid-rows-[auto_1fr] bg-background-foreground">
-      <Header />
-
+    <div className="h-screen w-full grid lg:grid-cols-[auto_1fr] grid-rows-[auto_1fr] bg-background-foreground">
       <Navbar />
 
-      <main className="flex flex-col max-w-[1352px] w-full p-6 pb-10 gap-10 mx-auto overflow-auto">
-        {children}
-      </main>
+      {children}
     </div>
   );
 }

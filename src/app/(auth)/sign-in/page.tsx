@@ -76,7 +76,7 @@ export default function SignUp() {
                   <Input
                     autoComplete="new-password"
                     error={!!formState.errors.email?.message}
-                    placeholder="you@example.com"
+                    placeholder="você@exemplo.com"
                     {...field}
                   />
                 </FormControl>

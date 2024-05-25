@@ -1,17 +1,9 @@
 import { z } from "zod";
 import { isValidPhoneNumber } from "react-phone-number-input";
+import { fullname, phone } from "@/utils/validations";
 
 const personalSchema = z.object({
-  fullname: z
-    .string({
-      message: "Nome completo é um campo obrigatório",
-    })
-    .refine(
-      (value) => {
-        return value.trim().split(/\s+/u).length >= 2;
-      },
-      { message: "Escreva o nome completo" },
-    ),
+  fullname,
   email: z
     .string({
       message: "E-mail é um campo obrigatório",
@@ -20,11 +12,7 @@ const personalSchema = z.object({
     .email({
       message: "E-mail inválido",
     }),
-  phone: z
-    .string({
-      message: "Celular é um campo obrigatório",
-    })
-    .refine(isValidPhoneNumber, { message: "Número de celular inválido" }),
+  phone,
   password: z
     .string({
       message: "Senha é um campo obrigatório",

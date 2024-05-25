@@ -60,7 +60,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => (
     <Input
       className={cn(
-        "rounded-e-lg rounded-s-none group-data-[error=true]:border-destructive group-data-[error=true]:focus-visible:ring-destructive",
+        "rounded-e-lg rounded-s-none group-data-[error=true]:border-destructive group-data-[error=true]:focus-visible:border-border group-data-[error=true]:ring-red-200 group-data-[error=true]:focus-visible:ring-offset-destructive",
         className,
       )}
       {...props}
@@ -94,7 +94,7 @@ const CountrySelect = ({ disabled, value, onChange, options }: CountrySelectProp
           type="button"
           variant={"outline"}
           className={cn(
-            "flex gap-1 group-data-[error=true]:border-destructive border-r-0 group-data-[error=true]:focus-visible:ring-destructive rounded-e-none rounded-s-lg px-3",
+            "flex gap-1 group-data-[error=true]:border-destructive border-r-0 group-data-[error=true]:focus-visible:border-border outline-none group-data-[error=true]:focus-visible:ring-red-200 group-data-[error=true]:focus-visible:ring-offset-destructive rounded-e-none rounded-s-lg px-3",
           )}
           disabled={disabled}
         >

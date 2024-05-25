@@ -108,7 +108,7 @@ export default function BasicData({ user }: BasicDataProps) {
                     <PhoneInput
                       error={!!formState.errors.phone?.message}
                       defaultCountry="BR"
-                      placeholder="Enter a phone number"
+                      placeholder="Entre com um número"
                       {...field}
                     />
                   </FormControl>

@@ -4,6 +4,7 @@ import Link from "next/link";
 
 interface LogoProps {
   className?: string;
+  size?: "md" | "lg";
 }
 
 export function Logo({ className }: LogoProps) {

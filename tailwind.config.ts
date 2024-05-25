@@ -27,6 +27,10 @@ const config = {
           DEFAULT: "hsl(var(--border))",
           foreground: "var(var(--border-foreground))",
         },
+        accents: {
+          5: "hsl(var(--accents-5))",
+          6: "hsl(var(--accents-6))",
+        },
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: {

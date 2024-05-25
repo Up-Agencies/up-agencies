@@ -1,14 +1,19 @@
 import * as React from "react";
 
 import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
 
 const inputVariants = cva(
-  "flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+  cn(
+    "flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm ring-offset-file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none",
+    "focus-visible:ring-2 focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50  transition-all",
+  ),
   {
     variants: {
       error: {
-        true: "border-destructive focus-visible:ring-destructive",
-        false: "border-input focus-visible:ring-ring",
+        true: "border-destructive focus-visible:border-border focus-visible:ring-red-200 focus-visible:ring-offset-destructive",
+        false:
+          "border-input focus-visible:ring-violet-200 focus:ring-offset-1 focus:ring-offset-ring",
       },
     },
     defaultVariants: {

@@ -95,6 +95,7 @@ export function AgencyData({ isPending }: AgencyDataProps) {
           variant="ghost"
           type="button"
           className="mt-4"
+          disabled={isPending}
         >
           Voltar
         </Button>
